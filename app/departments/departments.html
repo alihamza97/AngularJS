@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Departments</title>
+
+</head>
+<body>
+<h2 align="center">Departments</h2>
+Search : <input type="text" placeholder="Search Department" ng-model="searchText"/>
+<table class="table table-bordered table-striped"> <!--This table is to display the data-->
+    <thead>
+    <tr>
+        <th>
+            <button style="border: transparent;background: transparent" ng-click="setOrderProperty('number'); toggle = !toggle">
+                <span ng-show="toggle">Department No ^</span>
+                <span ng-hide="toggle">Department No v</span>
+            </button>
+        </th>
+        <th>
+            <button style="border: transparent;background: transparent" ng-click="setOrderProperty('name'); toggle = !toggle">
+                <span ng-show="toggle">Department Name ^</span>
+                <span ng-hide="toggle">Department Name v</span>
+            </button>
+        </th>
+        <th>
+            <button style="border: transparent;background: transparent" ng-click="setOrderProperty('code'); toggle = !toggle">
+                <span ng-show="toggle">Department Code ^</span>
+                <span ng-hide="toggle">Department Code v</span>
+            </button>
+        </th>
+        <th>Show Details</th>
+
+    </tr>
+
+    </thead>
+    <tr ng-repeat="department in departments| orderBy: orderProperty | filter: {no: filterdeptno} | filter: {name: filtername} | filter: {code: filtercode}| filter:searchText">
+
+        <td>{{department.no}}</td>
+        <td>{{department.name}}</td>
+        <td>{{department.code}}</td>
+        <td><button class="btn btn-primary" ng-click="GetDetails($index)">Show Details</button></td>
+        <td><button class="btn btn-primary" ng-click="edit($index)">Edit</button></td>
+        <td><button class="btn btn-danger" ng-click="del($index)">Delete</button></td>
+
+    </tr>
+
+    </tr>
+</table> <br>
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>  <td style="margin-left: -100px"> <b>Edit Departments</b></td></tr>
+    </thead>
+    <tbody> <!-- This table is to enter data-->
+    <tr>
+        <td>Enter Department No: </td>
+        <td>
+            <input type="no" placeholder="number" ng-model="number" /></td>
+    </tr>
+    <tr>
+        <td>Enter Department Name: </td>
+        <td>
+            <input type="name" placeholder="name" ng-model="name" /></td>
+    </tr>
+    <tr>
+        <td>Enter Department Code: </td>
+        <td>
+            <input type="code" placeholder="code" ng-model="code" /></td>
+    </tr>
+
+
+    <tr>
+        <td><button class="btn btn-info" value="Update" ng-click="Update()">Update</button></td>
+        <td><button class="btn btn-success" value="Save" ng-click="btnclk()">Save</button></td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

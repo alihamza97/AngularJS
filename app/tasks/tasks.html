@@ -1,0 +1,96 @@
+
+<table>
+
+    Search : <input type="text" placeholder="Search Tasks" ng-model="searchText"/>
+    <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>
+            <button style="border: transparent;background: transparent" ng-click="setOrderProperty('title'); toggle = !toggle">
+                <span ng-show="toggle">Title ^</span>
+                <span ng-hide="toggle">Title v</span>
+            </button>
+        </th>
+          <th>
+              <button style="border: transparent;background: transparent" ng-click="setOrderProperty('description'); toggle = !toggle">
+                  <span ng-show="toggle">Description ^</span>
+                  <span ng-hide="toggle">Description v</span>
+              </button>
+          </th>
+          <th>
+              <button style="border: transparent;background: transparent" ng-click="setOrderProperty('status'); toggle = !toggle">
+                  <span ng-show="toggle">Status ^</span>
+                  <span ng-hide="toggle">Status v</span>
+              </button>
+          </th>
+          <th>
+              <button style="border: transparent;background: transparent" ng-click="setOrderProperty('creatioDate'); toggle = !toggle">
+                  <span ng-show="toggle">Start Date ^</span>
+                  <span ng-hide="toggle">Start Date v</span>
+              </button>
+          </th>
+          <th>
+              <button style="border: transparent;background: transparent" ng-click="setOrderProperty('finishedDate'); toggle = !toggle">
+                  <span ng-show="toggle">End Date ^</span>
+                  <span ng-hide="toggle">End Date v</span>
+              </button>
+          </th>
+          <th>Show Details</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="task in tasks |orderBy: orderProperty |filter: {title : filterTitle}| filter: {description : filerDesc } | filter:searchText">
+        <td>{{task.title}}</td>
+          <td>{{task.description}}</td>
+          <td>{{task.status}}</td>
+          <td>{{task.creatioDate}}</td>
+          <td>{{task.finishedDate}}</td>
+          <td><button class="btn btn-primary" ng-click="GetDetails($index)">Show Details</button></td>
+          <td><button class="btn btn-primary" ng-click="edit(task)">Edit</button></td>
+        <td><button class="btn btn-danger" ng-click="del($index)">Delete</button></td>
+
+      </tr>
+    </tbody>
+  </table>
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Edit Task</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>Title</td>
+                <td colspan="2"><input placeholder="Enter task" ng-model="titleEditField"/></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td colspan="2"><input placeholder="Enter description" ng-model="descEditField"/></td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td colspan="2"><input placeholder="Enter status" ng-model="statusEditField"/></td>
+            </tr>
+            <tr>
+                <td>Start date</td>
+                <td colspan="2"><input placeholder="Enter start date" ng-model="startEditField"/></td>
+            </tr>
+            <tr>
+                <td>End date</td>
+                <td colspan="2"><input placeholder="Enter end date" ng-model="endEditField"/></td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-info" value="Update" ng-click="update()">Update</button></td>
+                <td><button class="btn btn-success" value="Save" ng-click="add()">Save</button></td>
+                <td><button class="btn btn-default" value="Cancel" ng-click="clear()">Cancel</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+</table>
+

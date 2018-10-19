@@ -1,0 +1,67 @@
+
+
+
+Search : <input type="text" placeholder="Search Tasks,Employees,Departments" ng-model="searchText"/>
+<div ng-controller="DashboardCtrl">
+    Current time is: <span my-current-time="format"></span>
+</div>
+
+
+
+<table class="table table-bordered table-striped">
+     <caption>Tasks</caption>
+    <thead>
+      <tr>
+          <th style="width: 80%;">Title</th>
+          <th style="width: 80%;">Creation Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="task in tasks |orderBy:'text' |filter:{text : tasksfiler}| filter:searchText">
+          <td>{{task.title}}</td>
+          <td>{{task.creatioDate}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+<div ng-controller="TasksCtrl">
+    <div add-task></div>
+</div>
+
+
+ <table class="table table-bordered table-striped">
+     <caption>Employees</caption>
+     <thead>
+        <tr>
+            <th style="width: 30%;">First name</th>
+            <th style="width: 30%;">Surname</th>
+            <th style="width: 40%;">Email</th>
+        </tr>
+     </thead>
+     <tbody>
+        <tr ng-repeat="employee in employees |orderBy:'firstName'| filter: {firstName: filterEmpName} | filter: {surname: filtersurName} | filter:searchText">
+            <td>{{employee.firstName}}</td>
+            <td>{{employee.lastName}}</td>
+            <td>{{employee.email}}</td>
+        </tr>
+     </tbody>
+ </table>
+
+ <table class="table table-bordered table-striped">
+     <caption>Departments</caption>
+     <thead>
+     <tr>
+         <th style="width: 20%;">Number</th>
+         <th style="width: 60%;">Name</th>
+         <th style="width: 20%;">Code</th>
+     </tr>
+     </thead>
+     <tbody>
+     <tr ng-repeat="department in departments | orderBy: 'no' | filter: {no: filterdeptno} | filter: {name: filtername} | filter: {code: filtercode}| filter:searchText">
+         <td>{{department.no}}
+         <td>{{department.name}}</td>
+         <td>{{department.code}}</td>
+     </tbody>
+
+ </table>
+

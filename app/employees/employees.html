@@ -1,0 +1,76 @@
+<html>
+  <body>
+  <table>
+
+  Search : <input type="text" placeholder="Search Employees" ng-model="searchText"/>
+    <table class="table table-bordered table-striped">
+
+      <thead>
+        <tr>
+          <th>
+            <button style="border: transparent;background: transparent" ng-click="setOrderProperty('firstName'); toggle = !toggle">
+            <span ng-show="toggle">First Name ^</span>
+            <span ng-hide="toggle">First Name v</span>
+            </button>
+          </th>
+          <th>
+            <button style="border: transparent;background: transparent" ng-click="setOrderProperty('lastName'); toggle = !toggle">
+              <span ng-show="toggle">lastName ^</span>
+              <span ng-hide="toggle">lastName v</span>
+            </button>
+          </th>
+          <th>
+            <button style="border: transparent;background: transparent" ng-click="setOrderProperty('birthDate'); toggle = !toggle">
+              <span ng-show="toggle">Birth Date ^</span>
+              <span ng-hide="toggle">Birth Date v</span>
+            </button>
+          </th>
+          <th>Show Details</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="employee in employees| orderBy: orderProperty | filter: {firstName: filterEmpName} | filter: {lastName: filterLastName} | filter:searchText">
+          <td>{{employee.firstName}}</td>
+          <td>{{employee.lastName}}</td>
+          <td>{{employee.birthDate}}</td>
+          <td><button class="btn btn-primary" ng-click="GetDetails($index)">Show Details</button></td>
+          <td><button class="btn btn-primary" ng-click="edit(employee)">Edit</button></td>
+          <td><button class="btn btn-danger" ng-click="del($index)">Delete</button></td>
+
+        </tr>
+      </tbody>
+    </table>
+
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <th>Add/Edit Employee</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>First name: </td>
+        <td colspan="2"><input placeholder="Enter first name" ng-model="firstNameEditField"/></td>
+      </tr>
+      <tr>
+        <td>Surname: </td>
+        <td colspan="2"><input placeholder="Enter lastName" ng-model="lastNameEditField"/></td>
+      </tr>
+      <tr>
+        <td>Email: </td>
+        <td colspan="2"><input placeholder="Enter email" ng-model="emailEditField"/></td>
+      </tr>
+      <tr>
+        <td><button class="btn btn-info" value="Update" ng-click="update()">Update</button></td>
+        <td><button class="btn btn-success" value="Save" ng-click="add()">Save</button></td>
+        <td><button class="btn btn-default" value="Cancel" ng-click="clear()">Cancel</button></td>
+      </tr>
+      </tbody>
+    </table>
+
+  </body>
+
+
+
+</html>
